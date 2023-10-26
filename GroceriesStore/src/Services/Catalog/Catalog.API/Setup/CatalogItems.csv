@@ -1,0 +1,13 @@
+CatalogTypeName,CatalogBrandName,Description,Name,Price,PictureFileName,availablestock,onreorder
+Fruits,GT Prime,Apple,Apple,0.50,1.jpg,100,false
+Vegetables,GT Prime,Asparagus,Asparagus,8.50,2.jpg,100,false
+Fruits,GT Prime,Avocado,Avocado,6.00,3.jpg,100,false
+Fruits,GT Prime,Banana,Banana,2.00,4.jpg,100,false
+Fruits,GT Prime,Blueberries,Blueberries,4.50,5.jpg,100,false
+Fruits,GT Prime,Orange,Orange,2.00,6.jpg,100,false
+Vegetables,GT Second,Brocolli,Brocolli,8.00,7.jpg,100,false
+Vegetables,GT Second,Cabage,Cabage,1.50,8.jpg,100,false
+Vegetables,GT Second,Carrot,Carrot,2.35,9.jpg,100,false
+Vegetables,GT Second,Cucumber,Cucumber,0.70,10.jpg,100,false
+Vegetables,GT Second,Onion,Onion,5.50,11.jpg,100,false
+Fruits,GT Second,Grapefruit,Grapefruit,3.60,12.jpg,100,false

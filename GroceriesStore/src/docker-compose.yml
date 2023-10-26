@@ -1,0 +1,49 @@
+version: '3.4'
+
+services:
+
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2019-latest 
+
+  identity-api:
+    image: ${REGISTRY:-eshop}/identity.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Services/Identity/Identity.API/Dockerfile
+    depends_on:
+      - sqldata
+
+  basket-api:
+    image: ${REGISTRY:-eshop}/basket.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Services/Basket/Basket.API/Dockerfile
+    depends_on:
+      - identity-api
+
+  catalog-api:
+    image: ${REGISTRY:-eshop}/catalog.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Services/Catalog/Catalog.API/Dockerfile
+    depends_on:
+      - sqldata
+
+  webshoppingagg:
+    image: ${REGISTRY:-eshop}/webshoppingagg:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: ApiGateways/Web.Bff.Shopping/aggregator/Dockerfile
+    depends_on:
+      - sqldata
+      - identity-api
+      - catalog-api
+      - basket-api
+
+  webmvc:
+    image: ${REGISTRY:-eshop}/webmvc:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Web/WebMVC/Dockerfile
+    depends_on:
+      - webshoppingagg

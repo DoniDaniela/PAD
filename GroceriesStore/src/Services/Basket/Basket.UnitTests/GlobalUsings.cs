@@ -1,0 +1,13 @@
+﻿global using System.Collections.Generic;
+global using System.Threading.Tasks;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Mvc;
+global using GroceriesStore.Services.Basket.API.Controllers;
+global using GroceriesStore.WebMVC.Controllers;
+global using GroceriesStore.WebMVC.Services;
+global using GroceriesStore.WebMVC.ViewModels;
+global using Microsoft.Extensions.Logging;
+global using Moq;
+global using Xunit;
+global using IBasketIdentityService = GroceriesStore.Services.Basket.API.Services.IIdentityService;
+global using BasketModel = GroceriesStore.WebMVC.ViewModels.Basket;

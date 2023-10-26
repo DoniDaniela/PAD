@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "serviceConnectorResourceId": "",
+      "containerPorts": "1434:1433",
+      "secretStore": "LocalSecretsFile",
+      "containerName": "catalog-mssql",
+      "containerImage": "mcr.microsoft.com/mssql/server:2019-latest",
+      "type": "mssql.container",
+      "connectionId": "ConnectionStrings:CatalogDB",
+      "dynamicId": null
+    }
+  }
+}
