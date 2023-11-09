@@ -2,7 +2,7 @@
 
 <form asp-controller="Cart" asp-action="AddToCart">
 
-    <img class="esh-catalog-thumbnail" src="@Model.PictureUri" />
+    <img class="esh-catalog-thumbnail" src="/images/Pics/@(Model.Id).jpg" @*src="@Model.PictureUri"*@ />
     <input class="esh-catalog-button @((!User.Identity.IsAuthenticated) ? "is-disabled" : "")" type="submit" value="[ ADD TO CART ]" />
 
     <div class="esh-catalog-name">

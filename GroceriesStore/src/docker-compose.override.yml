@@ -57,7 +57,6 @@ services:
 
   webshoppingagg:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
       - urls__basket=http://basket-api
       - urls__catalog=http://catalog-api
       - urls__orders=http://ordering-api
@@ -73,13 +72,13 @@ services:
       - Identity__Url=http://identity-api
       - Identity__ExternalUrl=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:7105
     ports:
-      - "7121:80"
+      - "7121:5000"
 
   webmvc:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
-      - PurchaseUrl=http://webshoppingagg
+      - PurchaseUrl=http://webshoppingagg:5000
       - IdentityUrl=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:7105
       - IdentityUrlHC=http://identity-api/hc
       - UseLoadTest=${USE_LOADTEST:-False}

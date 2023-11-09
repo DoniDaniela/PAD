@@ -12,11 +12,11 @@ public class SeedData
             await context.Database.MigrateAsync();
 
             var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-            var alice = await userMgr.FindByNameAsync("alice");
+            var dana = await userMgr.FindByNameAsync("dana");
 
-            if (alice == null)
+            if (dana == null)
             {
-                alice = new ApplicationUser
+                dana = new ApplicationUser
                 {
                     UserName = "dana",
                     Email = "doni.daniela01@gmail.com",
@@ -37,7 +37,7 @@ public class SeedData
                     SecurityNumber = "123"
                 };
 
-                var result = userMgr.CreateAsync(alice, "Pass123$").Result;
+                var result = userMgr.CreateAsync(dana, "Pass123$").Result;
 
                 if (!result.Succeeded)
                 {
