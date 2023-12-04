@@ -6,22 +6,52 @@ services:
     image: mcr.microsoft.com/mssql/server:2019-latest 
 
   identity-api:
-    image: danieladoni01/groceriestore-identity.api:latest
+    image: ${REGISTRY:-eshop}/identity.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Services/Identity/Identity.API/Dockerfile
     depends_on:
       - sqldata
 
   basket-api:
-    image: danieladoni01/groceriestore-basket-api:latest
+    image: ${REGISTRY:-eshop}/basket.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Services/Basket/Basket.API/Dockerfile
     depends_on:
       - identity-api
 
+  basket-api2:
+    image: ${REGISTRY:-eshop}/basket.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Services/Basket/Basket.API/Dockerfile
+    depends_on:
+      - identity-api
+      - basket-api
+
   catalog-api:
-    image: danieladoni01/groceriestore-catalog.api:latest
+    image: ${REGISTRY:-eshop}/catalog.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Services/Catalog/Catalog.API/Dockerfile
     depends_on:
       - sqldata
 
+  catalog-api2:
+    image: ${REGISTRY:-eshop}/catalog.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Services/Catalog/Catalog.API/Dockerfile
+    depends_on:
+      - sqldata
+      - catalog-api
+
   webshoppingagg:
-    image: danieladoni01/groceriestore-webshoppingagg:latest
+    image: ${REGISTRY:-eshop}/webshoppingagg:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: ApiGateways/WebAggregator/Dockerfile
     depends_on:
       - sqldata
       - identity-api
@@ -29,6 +59,9 @@ services:
       - basket-api
 
   webmvc:
-    image: danieladoni01/groceriestore-webmvc:latest
+    image: ${REGISTRY:-eshop}/webmvc:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Web/WebMVC/Dockerfile
     depends_on:
       - webshoppingagg

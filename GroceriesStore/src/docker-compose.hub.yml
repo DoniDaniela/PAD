@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2019-latest 
+
+  identity-api:
+    image: danieladoni01/groceriestore-identity.api:latest
+    depends_on:
+      - sqldata
+
+  basket-api:
+    image: danieladoni01/groceriestore-basket-api:latest
+    depends_on:
+      - identity-api
+
+  catalog-api:
+    image: danieladoni01/groceriestore-catalog.api:latest
+    depends_on:
+      - sqldata
+
+  webshoppingagg:
+    image: danieladoni01/groceriestore-webshoppingagg:latest
+    depends_on:
+      - sqldata
+      - identity-api
+      - catalog-api
+      - basket-api
+
+  webmvc:
+    image: danieladoni01/groceriestore-webmvc:latest
+    depends_on:
+      - webshoppingagg

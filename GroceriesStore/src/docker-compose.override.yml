@@ -42,6 +42,21 @@ services:
       - "7103:80"
       - "9103:81"
 
+  basket-api2:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__BasketDb=${ESHOP_AZURE_CATALOG_DB:-Server=sqldata;Database=GroceriesStore.Services.BasketDb;User Id=sa;Password=Pass@word;Encrypt=False;TrustServerCertificate=true}
+      - Kestrel__Endpoints__HTTP__Url=http://0.0.0.0:80
+      - Kestrel__Endpoints__GRPC__Url=http://0.0.0.0:81
+      - Kestrel__Endpoints__GRPC__Protocols=Http2
+      - Identity__Url=http://identity-api
+      - Identity__ExternalUrl=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:7105
+      - UseLoadTest=${USE_LOADTEST:-False}
+      - PATH_BASE=/basket-api2
+    ports:
+      - "7123:80"
+      - "9123:81"
+
   catalog-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -54,6 +69,20 @@ services:
     ports:
       - "7101:80"
       - "9101:81"
+
+  catalog-api2:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Kestrel__Endpoints__HTTP__Url=http://0.0.0.0:80
+      - Kestrel__Endpoints__GRPC__Url=http://0.0.0.0:81
+      - Kestrel__Endpoints__GRPC__Protocols=Http2
+      - ConnectionStrings__CatalogDb=${ESHOP_AZURE_CATALOG_DB:-Server=sqldata;Database=GroceriesStore.Services.CatalogDb;User Id=sa;Password=Pass@word;Encrypt=False;TrustServerCertificate=true}
+      - PicBaseUrl=${ESHOP_STORAGE_CATALOG_URL}
+      - PATH_BASE=/catalog-api2
+    ports:
+      - "7121:80"
+      - "9121:81"
+
 
   webshoppingagg:
     environment:

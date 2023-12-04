@@ -38,6 +38,7 @@
       <SubType>Content</SubType>
       <DependentUpon>Dockerfile</DependentUpon>
     </Content>
+    <Content Include="libman.json" />
     <Content Include="requirements.txt" />
     <None Include="Dockerfile" />
   </ItemGroup>
