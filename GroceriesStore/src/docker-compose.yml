@@ -57,6 +57,8 @@ services:
       - identity-api
       - catalog-api
       - basket-api
+      - catalog-api2
+      - basket-api2
 
   webmvc:
     image: ${REGISTRY:-eshop}/webmvc:${PLATFORM:-linux}-${TAG:-latest}

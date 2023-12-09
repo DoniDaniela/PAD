@@ -12,13 +12,13 @@ class ReverseProxy(http.server.BaseHTTPRequestHandler):
     def proxy_request(self):
         # Define the target server and port you want to proxy requests to
         target_host = 'localhost'
-        target_port = 5222
+        target_port = 7101
 
         if self.path[:3] == "/c/":
             self.path = self.path.replace("/c/", "/")
         elif self.path[:3] == "/b/":
             self.path = self.path.replace("/b/", "/")
-            target_port = 5221
+            target_port = 7103
 
         # Create an HTTP connection to the target server
         connection = http.client.HTTPConnection(target_host, target_port)

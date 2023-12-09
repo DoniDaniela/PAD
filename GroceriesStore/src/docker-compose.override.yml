@@ -54,8 +54,8 @@ services:
       - UseLoadTest=${USE_LOADTEST:-False}
       - PATH_BASE=/basket-api2
     ports:
-      - "7123:80"
-      - "9123:81"
+      - "7113:80"
+      - "9113:81"
 
   catalog-api:
     environment:
@@ -80,8 +80,8 @@ services:
       - PicBaseUrl=${ESHOP_STORAGE_CATALOG_URL}
       - PATH_BASE=/catalog-api2
     ports:
-      - "7121:80"
-      - "9121:81"
+      - "7111:80"
+      - "9111:81"
 
 
   webshoppingagg:
@@ -101,7 +101,7 @@ services:
       - Identity__Url=http://identity-api
       - Identity__ExternalUrl=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:7105
     ports:
-      - "7121:5000"
+      - "7151:5000"
 
   webmvc:
     environment:
